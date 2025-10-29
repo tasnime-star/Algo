@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+char *loadstring(int n){
+char *str=malloc((n+1) * sizeof(char));
+if(str == NULL){
+printf("memory allocation failed!\n");
+exit(1);
+}
+printf("donne astring:");
+fgets(str,n,stdin);
+return str;
+}
+int stringlength(char * str){
+int len=0;
+while (str[len] != '\0' && str[len] != '\n')
+len++;
+return len;
+}
+void reversearray(char arr[],char rev[],int n){
+for(int i=0;i<n;i++){
+rev[i]=arr[n - i - 1];
+rev[n]='\0';
+}
+}
+void displayarray(char arr[],int n){
+for(int i=0;i<n;i++)
+printf("%c",arr[i]);
+printf("\n");
+}
+int sumstringascii(char *p){
+return(*p)? *p+sumstringascii(p+1):0;
+}
+void reversestring(char *start,char *end){
+if(start>=end)return;
+char temp= *start;
+*start = *end;
+*end = temp;
+reversestring(start+1,end-1);
+}
+void loadarray(char *p,char arr[]){
+}
+int main(){
+int n;
+printf("donne mux size:");
+scanf("%d",&n);
+getchar();
+char *str=loadstring(n);
+int len=stringlength(str);
+char arr[len+1],rev[len+1];
+
+loadarray(str,arr);
+printf("original array:\n");
+
+displayarray(arr,len);
+reversearray(arr,rev,len);
+printf("reversed array:");
+
+displayarray(rev,len);
+printf("sum of ascii values:%d\n",sumstringascii(str));
+
+reversestring(str,str+len-1);
+printf("reverse recursively:%s\n",str);
+free(str);
+
+    return 0;
+}
